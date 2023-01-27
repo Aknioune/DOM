@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-icons.css">
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>ShoppingCart</title>
 </head>
+
 <body>
-    <div id="cartForm">
-        <table class="table" >
-        <tr>
-            <th>product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>  </th>
-            <th></th>
-        </tr>
+    <div class="container">
+        <div id="cartForm">
+            <table class="table">
+                <tr>
+                    <th>product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+        <div class="ShoppingCart">
+            <h1>Shopping Cart</h1>
+            <div class="Facture"></div>
+            <div class="Totale">
+            <table class="table ">
+                <tr>
+                    <td>Totale:</td>
+                <td>
+            <div class="totals ">
+                <input type="text" value="Totale" style="color: gray;" readonly>
+            </div>
+        </td></tr>
         </table>
-      
     </div>
-   <div class="totals"><input type="text" value="Totale" style="color: gray;" readonly></div>
+        </div>
+    </div>
     <script src="cart.js"></script>
 </body>
+
 </html>

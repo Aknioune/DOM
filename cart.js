@@ -6,7 +6,7 @@ let data = [
       image:
         "https://www.thebeautysalon.ie/wp-content/uploads/2021/05/imagemain.jpg",
       qte: 0,
-      
+      isShow:true,
     },
     {
     id: 1,
@@ -15,7 +15,7 @@ let data = [
       image:
         "https://www.honestbrandreviews.com/wp-content/uploads/2021/06/Image-Skincare-Review-1.jpg",
       qte: 0,
-      
+      isShow:true,
     },
     {
         id:2,
@@ -24,7 +24,7 @@ let data = [
       image:
         "http://cdn.shopify.com/s/files/1/0288/9859/0802/files/pf-8ef41e18-e685-40b7-8bdb-1bd151c2764d--imageskincare6733357623503794286227309010151941059626806n_grande.jpg?v=1614337787",
       qte: 0,
-     
+      isShow:true,
     },
   ];
 
@@ -57,16 +57,16 @@ let data = [
   </td>
 
   <td>
-      <input class="qt" id ="${a.id}" value="${a.qte}" type="number" >
+      <input min="0" class="qt" id ="${a.id}" value="${a.qte}" type="number" >
   </td>
-  <td id="totalQte-${a.id}"></td>
+  
   <td>
-  <svg class="heart"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <svg class="heart"  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 </svg>
 </td>
 <td>
-<svg  class="Delete" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+<svg  class="Delete" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>
 </td>
@@ -75,6 +75,25 @@ let data = [
     `                                   
   }).join('');
   cartForm.innerHTML+=add_product
+
+
+
+  var cartFacture =document.querySelector(".Facture");
+  const productFacture=data.map(a =>{
+
+    return `
+    <table class="table" >
+    <tr >
+       <td > <p>${a.name}</p></td>
+       <td> <p class="mb-0">${a.price}$</p></td>
+       <td id="totalQte-${a.id}"></td>
+    </tr>
+    </table>
+    `                                   
+  }).join('');
+  cartFacture.innerHTML+=productFacture
+
+
   qte=document.getElementsByName('qte').value;
 
 // boucle du prix totale de produit parapor au quantite
@@ -92,6 +111,7 @@ let data = [
       //   parseInt(data[id].price)
       // );
       document.querySelector(".totals").innerHTML = getAmount();
+      
       // document.querySelector(".totals").innerHTML = calcTotal(data[id].price,data[id].qte)
       
 
@@ -117,6 +137,7 @@ var btndel=document.querySelectorAll(".Delete");
 btndel.forEach((item)=> {
   item.addEventListener('click',(e)=>{
    e.currentTarget.parentElement.parentElement.remove()
+   
   })
 })
 

@@ -1,17 +1,43 @@
 #cartForm{
     display: block;
+}
+.container{
+    box-shadow: 0em 0.2em 0.5em 0.2em rgb(51, 51, 51);
     margin: 100px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: auto auto;
+    border-radius: 7px;
+}
+.table{
+    margin: auto;
+    width: 80%;
 }
 .red{
     fill: red;
 }
-
-.totals{
-    
+.totals  input{
+   background-color: transparent;
+   width: 90px;
+   
+}
+.ShoppingCart .Totale {
+    font-weight: 900;
+    padding-right: 40px;
+    padding-top: 90px;
+    margin: auto;
+}
+.ShoppingCart{
+    border-radius: 7px;
+    box-shadow: 0.5em 0.5em 1em 0.2em rgb(121, 103, 138);
+    padding-top: 50px;
+   
+    background-color: rgb(219, 186, 248);
     display: block;
     text-align: center;
    
 }
+
 
 
 
