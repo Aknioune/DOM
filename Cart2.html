@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+  <title>Document</title>
+  <style>
+    .product-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+  
+    .product-container img {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+    }
+  
+    .price-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+  
+    .price-container i {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+  
+    .total-container {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  
+    .delete-button {
+      margin-left: auto;
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+  <script>
+    const products = [
+      { name: "Product 1", price: 10, image: "https://www.thebeautysalon.ie/wp-content/uploads/2021/05/imagemain.jpg" },
+      { name: "Product 2", price: 20, image: "https://www.honestbrandreviews.com/wp-content/uploads/2021/06/Image-Skincare-Review-1.jpg" },
+      { name: "Product 3", price: 30, image: "http://cdn.shopify.com/s/files/1/0288/9859/0802/files/pf-8ef41e18-e685-40b7-8bdb-1bd151c2764d--imageskincare6733357623503794286227309010151941059626806n_grande.jpg?v=1614337787" },
+    ];
+
+    const container = document.createElement("div");
+    container.classList.add("product-container");
+    document.body.appendChild(container);
+
+    products.forEach((product, index) => {
+      const productContainer = document.createElement("div");
+      productContainer.classList.add("product-container");
+
+      const img = document.createElement("img");
+      img.src = product.image;
+      img.alt = product.name;
+      productContainer.appendChild(img);
+
+      const name = document.createElement("p");
+      name.innerText = product.name;
+      productContainer.appendChild(name);
+
+      const quantity = document.createElement("input");
+      quantity.type = "number";
+      quantity.value = 1;
+      quantity.setAttribute("min","1");
+      quantity.addEventListener("change", (e) => {
+        updateTotal(index);
+      });
+      productContainer.appendChild(quantity);
+
+      const priceContainer = document.createElement("div");
+      priceContainer.classList.add("price-container");
+
+      const priceIcon = document.createElement("i");
+      priceIcon.classList.add("fa");
+      priceIcon.classList.add("fa-dollar-sign");
+      priceContainer.appendChild(priceIcon);
+
+      const price = document.createElement("p");
+      price.innerText = product.price;
+      priceContainer.appendChild(price);
+
+      productContainer.appendChild(priceContainer);
+
+      const heartIcon = document.createElement("i");
+      heartIcon.classList.add("bi");
+      heartIcon.classList.add("bi-heart-fill");
+      heartIcon.addEventListener("click", (e) => {
+        toggleFavorite(index);
+      });
+      productContainer.appendChild(heartIcon);
+
+      const totalContainer = document.createElement("p");
+      totalContainer.classList.add("total-container");
+      totalContainer.innerText = `Total: ${product.price}`;
+      productContainer.appendChild(totalContainer);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("delete-button");
+      deleteButton.innerText = "Delete";
+      deleteButton.addEventListener("click", (e) => {
+        deleteProduct(index);
+      });
+      productContainer.appendChild(deleteButton);
+
+      container.appendChild(productContainer);
+    });
+
+
+    //heart
+    const heartIcons = document.querySelectorAll(".bi-heart-fill");
+    heartIcons.forEach((element) => {
+      element.addEventListener("click", function () {
+        if (element.style.color === "red") {
+          element.style.color = "black";
+        } else {
+          element.style.color = "red";
+        }
+      });
+    });
+
+
+
+    //Delete
+    const productContainers = document.querySelectorAll(".delete-button");
+    productContainers.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.currentTarget.parentElement.remove();
+        // console.log(productContainers)
+      });
+    });
+
+
+
+
+    function updateTotal(index) {
+      const quantity = document.querySelectorAll(
+        ".product-container input[type='number']"
+      )[index].value;
+      const price = document.querySelectorAll(".price-container p")[index].innerText;
+      const totalContainers = document.querySelectorAll(".total-container");
+      totalContainers[index].innerText = `Total: ${quantity * price}`;
+    }
+
+  </script>
+</body>
+
+</html>
